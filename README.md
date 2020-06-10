@@ -10,7 +10,7 @@ Run the Keycloak with the username and password as "admin", then you can log in 
 
 Import the `demo-realm-export.json` file to create the `demo` realm with `user-service` client, `USER_QUERY_AUTH_ROLES` and `USER_QUERY` roles and mappings for `authorities` and `user_name` fields in JWT which are mandatory for default JWT handling in the Spring Security.
 
-Also, you need to update the `security.oauth2.resource.jwt.key-value` entry in the `application.yml` file with the `demo` realm's `RS256 Public key`. When you'ra at "Demo" realm, click "Realm Settings", click "Keys" tab, and click "Public key" button, copy the content of the popup window to the "application.yml" file.
+Also, you need to update the `security.oauth2.resource.jwt.key-value` entry in the `application.yml` file with the `demo` realm's `RS256 Public key`. When you'ra at "Demo" realm, click "Realm Settings", click "Keys" tab, and click "Public key" button, copy the content of the popup window to the "application.yml" file. You can also get the public key from this url `http://localhost:8080/auth/realms/demo/`.
 
 ```
 docker run -p 8080:8080 --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin jboss/keycloak:7.0.0
