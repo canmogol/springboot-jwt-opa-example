@@ -1,169 +1,140 @@
 {
-  "info": {
-    "_postman_id": "bce2d5f5-ac25-4ab8-af7a-a1440e9b42a2",
-    "name": "JWT-Keycloak",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "GET NEW TOKEN",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "5be728b0-dd70-462d-94af-2cb32cd7658f",
-            "exec": [
-              "pm.environment.set(\"access_token\", \"variable_value\");",
-              "",
-              "pm.test(\"Response should be a JSON with access_token\", function () {",
-              "    var jsonData = pm.response.json();",
-              "    pm.expect(jsonData.access_token).not.equal(null);",
-              "    pm.collectionVariables.set(\"coll_access_token\", jsonData.access_token);",
-              "});"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "username",
-              "value": "myra.manson",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "myra",
-              "type": "text"
-            },
-            {
-              "key": "grant_type",
-              "value": "password",
-              "type": "text"
-            },
-            {
-              "key": "client_id",
-              "value": "user-service",
-              "type": "text"
-            },
-            {
-              "key": "client_secret",
-              "value": "1ec301cd-496b-45a4-aba3-cdd4f2edcf9f",
-              "type": "text"
-            }
-          ],
-          "options": {
-            "urlencoded": {}
-          }
-        },
-        "url": {
-          "raw": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8080",
-          "path": [
-            "auth",
-            "realms",
-            "demo",
-            "protocol",
-            "openid-connect",
-            "token"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "GET Username",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "{{coll_access_token}}",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "",
-            "value": "",
-            "type": "text",
-            "disabled": true
-          }
-        ],
-        "url": {
-          "raw": "http://localhost:8501/api/v0.0.1/users/username",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8501",
-          "path": [
-            "api",
-            "v0.0.1",
-            "users",
-            "username"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "GET Roles",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "{{coll_access_token}}",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8501/api/v0.0.1/users/roles",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8501",
-          "path": [
-            "api",
-            "v0.0.1",
-            "users",
-            "roles"
-          ]
-        }
-      },
-      "response": []
-    }
-  ],
-  "variable": [
-    {
-      "id": "a248a35c-af9c-45c9-9b4b-bc4ffea7df97",
-      "key": "coll_access_token",
-      "value": "",
-      "type": "string"
-    }
-  ],
-  "protocolProfileBehavior": {}
+	"info": {
+		"_postman_id": "cc92c25c-13a1-4c4c-84fb-33df86670f0c",
+		"name": "JWT-Keycloak",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET NEW TOKEN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "myra.manson",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "myra",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "user-service",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "1ec301cd-496b-45a4-aba3-cdd4f2edcf9f",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"realms",
+						"demo",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Username",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJtS0Rrdk53dEhaOEIwdHBqV09GMVZEVTNSSVBEMGFvRzRKLTliM3RQdTNVIn0.eyJqdGkiOiIyODc4NDQ1MC0yMzJkLTQwZWItOWFkNC03NjFjMjZmZWFiMWMiLCJleHAiOjE1NTMwMTI3NjEsIm5iZiI6MCwiaWF0IjoxNTUzMDEyNDYxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvZGVtbyIsImF1ZCI6ImRvY3RvcnMtc2VydmljZSIsInN1YiI6ImY4YzgxZTIzLTI5NDctNGVlNi1hNDljLWMyOWVlYTdiM2M3NSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImRvY3RvcnMtc2VydmljZSIsImF1dGhfdGltZSI6MCwic2Vzc2lvbl9zdGF0ZSI6ImU0YTMzYmQ1LTdjZGMtNDNjZC1iMWJkLWU2N2EzMzg2ZDUwMCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOltdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImRvY3RvcnMtc2VydmljZSI6eyJyb2xlcyI6WyJNRURJQ0FMX0RPQ1RPUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInVzZXJfbmFtZSI6Imxpc2EuamVuc2VuIiwibmFtZSI6Ikxpc2EgSmVuc2VuIiwicHJlZmVycmVkX3VzZXJuYW1lIjoibGlzYS5qZW5zZW4iLCJnaXZlbl9uYW1lIjoiTGlzYSIsImZhbWlseV9uYW1lIjoiSmVuc2VuIiwiYXV0aG9yaXRpZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSIsIk1FRElDQUxfRE9DVE9SIl0sImVtYWlsIjoibGlzYS5qZW5zZW5AdmVzdGFtZWRpY2FsLmNvbSJ9.LXNnL-vsS1UYaKhktHPkqCFlNwKMDu7VoKGTPNvq7NXDJ9-ODfjcUYy6nAE0xpXgddmRHXwiFIbtCEm9UCimoQ9whsNxVrqOU6qM8Txohubt9ENvihHPIX46nY4RBaamf_ac5EfRlMQkL6eNComrfJMe8dwja3HPD5SLpmYiOY7t82ViNW0YvMvLUIxnphFqxrqGXOpcPCQjSC5UdWQmiezpFXdZyZpUlKxSDOklrfMbF2VrItObDW05oJcYpb1i3_gkZ2hKGETIjCOc62MnwKFjme6EGONn1hUQOTQMM71n1afKrmADJfyel7TRa-4ka4_lzpbhuscrn06Td1PWrQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8501/api/v0.0.1/users/username",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8501",
+					"path": [
+						"api",
+						"v0.0.1",
+						"users",
+						"username"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Roles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJtS0Rrdk53dEhaOEIwdHBqV09GMVZEVTNSSVBEMGFvRzRKLTliM3RQdTNVIn0.eyJqdGkiOiI1YmZjNmY0ZS1jMTA4LTQ0OWYtYTdkMS1kYjUyZDNkM2E4ODAiLCJleHAiOjE1NTMwMTI2NzYsIm5iZiI6MCwiaWF0IjoxNTUzMDEyMzc2LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvZGVtbyIsImF1ZCI6ImRvY3RvcnMtc2VydmljZSIsInN1YiI6ImY4YzgxZTIzLTI5NDctNGVlNi1hNDljLWMyOWVlYTdiM2M3NSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImRvY3RvcnMtc2VydmljZSIsImF1dGhfdGltZSI6MCwic2Vzc2lvbl9zdGF0ZSI6Ijg3YjFlOWZhLTA2MWQtNDkwNy1iZTZhLTQ2NDUyMmJlMGYzYSIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOltdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImRvY3RvcnMtc2VydmljZSI6eyJyb2xlcyI6WyJNRURJQ0FMX0RPQ1RPUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInVzZXJfbmFtZSI6Imxpc2EuamVuc2VuIiwibmFtZSI6Ikxpc2EgSmVuc2VuIiwicHJlZmVycmVkX3VzZXJuYW1lIjoibGlzYS5qZW5zZW4iLCJnaXZlbl9uYW1lIjoiTGlzYSIsImZhbWlseV9uYW1lIjoiSmVuc2VuIiwiYXV0aG9yaXRpZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSIsIk1FRElDQUxfRE9DVE9SIl0sImVtYWlsIjoibGlzYS5qZW5zZW5AdmVzdGFtZWRpY2FsLmNvbSJ9.LlkEO9dShzV1CZUgtUXT6EHV59gQZrLGHAbJ0QB4GfbxcYXzuGIaXkVJXxlzkHsRLS9J0Qc5fCKp3uhnsZdozqvnTMAEz2kSGD1V6KlYbXSoSr0f2X0WhwsvteTFZTipRnis8YGoJe1AeFHYPMCh6hK5a9TcXuPKEeuWW7mQwaFtVCnSh6QW-5kJRy1ZugJs7voKK0ZwiW2QAYc6M4_3Q6itJVMxm9xFgGQz6-ZHKCnRX_MNwf53ooW9D5CXYqOlMhAUXeZ7yDux1DIrGGAfm4mB3iIdqF-U6EeyLontz40to48EsbtaEteoKDvAV-5hwrTNyMkc6r8K7MaROVqlsQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8501/api/v0.0.1/users/roles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8501",
+					"path": [
+						"api",
+						"v0.0.1",
+						"users",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }

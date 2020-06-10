@@ -9,5 +9,6 @@
     <suppress files="[\\/]io.jwt.aa[\\/].*\.java$" checks="JavadocPackage"/>
     <suppress files="[\\/]io.jwt.aa[\\/].*\.java$" checks="AvoidInlineConditionals"/>
     <suppress files="[\\/]io.jwt.aa[\\/].*\.java$" checks="HideUtilityClassConstructor"/>
-    <suppress files="[\\/]io.jwt.aa[\\/].*Configuration.java$" checks="DesignForExtension"/>
+    <suppress files="[\\/]io.jwt.aa.config[\\/].*Configuration.java$" checks="DesignForExtension"/>
+    <suppress files="[\\/]io.jwt.aa.rest[\\/].*Controller.java$" checks="DesignForExtension"/>
 </suppressions>

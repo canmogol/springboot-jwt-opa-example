@@ -1,9 +1,11 @@
 package io.jwt.aa.config;
 
 import io.jwt.aa.rest.UserRestController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -29,6 +32,9 @@ public class APIandCORSSecurityConfiguration extends ResourceServerConfigurerAda
      * "security.oauth2.resource" properties.
      */
     private ResourceServerProperties resourceServerProperties;
+
+    @Autowired
+    private OPAAccessDecisionManager opaAccessDecisionManager;
 
     /**
      * Constructor.
@@ -81,7 +87,10 @@ public class APIandCORSSecurityConfiguration extends ResourceServerConfigurerAda
 
             // enable authentication for all the paths starting with "/api/"
             .antMatchers("/api/**")
-            .authenticated();
+            .authenticated()
+
+            // add voters
+            .accessDecisionManager(opaAccessDecisionManager);
     }
 
     /**
@@ -94,6 +103,19 @@ public class APIandCORSSecurityConfiguration extends ResourceServerConfigurerAda
         UrlBasedCorsConfigurationSource configurationSource = new UrlBasedCorsConfigurationSource();
         configurationSource.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return configurationSource;
+    }
+
+    /**
+     * Creates the rest template bean.
+     *
+     * @return Rest Template
+     */
+    @Bean
+    public RestTemplate restTemplate() {
+        RestTemplate client = new RestTemplate();
+        MappingJackson2HttpMessageConverter jsonHttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        client.getMessageConverters().add(jsonHttpMessageConverter);
+        return client;
     }
 
 }

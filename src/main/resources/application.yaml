@@ -1,0 +1,45 @@
+ams:
+    service:
+        url: http://localhost:8000/zp4n8ozp
+api:
+    endpoint:
+        users: ${api.path}/${api.version}/users
+    path: api
+    version: v0.0.1
+logging:
+    level:
+        root: INFO
+        io:
+            jwt:
+                aa:
+                    roles:
+                        ams:
+                            AMSClient: DEBUG
+opa:
+    url: http://localhost:8181/v1/data/restapi/authz
+security:
+    oauth2:
+        resource:
+            jwt:
+                key-value: |-
+                    -----BEGIN PUBLIC KEY-----
+                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi0Hgkrp6hm2dPkMF73bPaq2BsS4gs5wH2Ocvn8VFMAOnv5CrmTteTh3EwKynoHLfxShBCnLyiyD8uT5mXeQS4m197RbXddUkz69BnL4E0f4JSbnKn9Y9jYHQYmA7n/91WWbuWDbP8CUpW+iCpg65Cf4zZYz1mEeNa8Jd1Du4ynlIcUwbXkkhK1ngG+/7TbzbQ86Xj1pPOpZlqtLYfKQHSaLVYkc2C55Kit9SqCiK3lZ+Es4gDK0SXhQMKAW/Vr/OK+l0kdIBC9uU7gEd0D/iYyOIYusPhqgJHbN5IbFgMFJnmNSf72qE8oDBM+RWgkAJZeHyByEupNuZW29ycaoK0QIDAQAB
+                    -----END PUBLIC KEY-----
+server:
+    port: 8501
+service:
+    description: User service for querying the user related properties such as, username and the user's roles
+    name: UserService
+    roles: USER_SERVICE
+swagger:
+    contact:
+        email: '"dev@jwt.com"'
+        name: '"Development Team"'
+        url: '"www.jwt.com"'
+    description: ${service.description}
+    license:
+        name: '"License of API"'
+        url: '"www.jwt.com/license"'
+    termsUrl: '"Terms of service"'
+    title: ${service.name}
+    version: ${api.version}

@@ -426,7 +426,7 @@
       "surrogateAuthRequired": false,
       "enabled": true,
       "clientAuthenticatorType": "client-secret",
-      "secret": "bd2cbad1-6ccf-48e3-bb92-bc9961bc011e",
+      "secret": "bd2cbad1-6ccf-48e3-bb92-bc9961bc011e\n",
       "defaultRoles": [
         "view-profile",
         "manage-account"
