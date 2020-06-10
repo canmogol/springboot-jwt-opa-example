@@ -1,5 +1,7 @@
 # Spring Boot JWT Example
 
+if you're interested in OPA(Open Policy Agency) then you can check out the opa-enabled [opa-enabled](https://github.com/canmogol/springboot-jwt-opa-example/tree/opa-enabled) branch.
+
 ### Keycloak
 
 You need an OAuth2 backend to generate the JWT token, for this purpose you can use Keycloak. 
@@ -19,3 +21,6 @@ After that you need to create a user 'myra.manson' with password 'myra'. Set the
 ### Postman
 
 You can import the `JWT-Keycloak.postman_collection.json` file into Postman application and test the REST API. The `GET NEW TOKEN` request uses the `myra.manson` user which you need to create in Keycloak, or you can create any user in the `Demo` realm and use that user.
+
+
+[opa-enabled]: https://github.com/canmogol/springboot-jwt-opa-example/tree/opa-enabled
