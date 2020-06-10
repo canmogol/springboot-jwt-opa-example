@@ -1,0 +1,169 @@
+{
+  "info": {
+    "_postman_id": "bce2d5f5-ac25-4ab8-af7a-a1440e9b42a2",
+    "name": "JWT-Keycloak",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET NEW TOKEN",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5be728b0-dd70-462d-94af-2cb32cd7658f",
+            "exec": [
+              "pm.environment.set(\"access_token\", \"variable_value\");",
+              "",
+              "pm.test(\"Response should be a JSON with access_token\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.access_token).not.equal(null);",
+              "    pm.collectionVariables.set(\"coll_access_token\", jsonData.access_token);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "myra.manson",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "myra",
+              "type": "text"
+            },
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "user-service",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "1ec301cd-496b-45a4-aba3-cdd4f2edcf9f",
+              "type": "text"
+            }
+          ],
+          "options": {
+            "urlencoded": {}
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "auth",
+            "realms",
+            "demo",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Username",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{coll_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8501/api/v0.0.1/users/username",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8501",
+          "path": [
+            "api",
+            "v0.0.1",
+            "users",
+            "username"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Roles",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{coll_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8501/api/v0.0.1/users/roles",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8501",
+          "path": [
+            "api",
+            "v0.0.1",
+            "users",
+            "roles"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "id": "a248a35c-af9c-45c9-9b4b-bc4ffea7df97",
+      "key": "coll_access_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
